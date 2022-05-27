@@ -1,0 +1,815 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.1.19"
+        }
+      },
+      "VpcEndpointTestStack": {
+        "id": "VpcEndpointTestStack",
+        "path": "VpcEndpointTestStack",
+        "children": {
+          "keypair": {
+            "id": "keypair",
+            "path": "VpcEndpointTestStack/keypair",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.25.0"
+            }
+          },
+          "safeip": {
+            "id": "safeip",
+            "path": "VpcEndpointTestStack/safeip",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.25.0"
+            }
+          },
+          "VPC-Endpoints": {
+            "id": "VPC-Endpoints",
+            "path": "VpcEndpointTestStack/VPC-Endpoints",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "VpcEndpointTestStack/VPC-Endpoints/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
+                  "aws:cdk:cloudformation:props": {
+                    "cidrBlock": "10.0.0.0/20",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "instanceTenancy": "default",
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "VpcEndpointTestStack/VPC-Endpoints"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnVPC",
+                  "version": "2.25.0"
+                }
+              },
+              "public-subnetSubnet1": {
+                "id": "public-subnetSubnet1",
+                "path": "VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "VPCEndpointsA938FBB8"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.0.0/24",
+                        "mapPublicIpOnLaunch": true,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "public-subnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Public"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "VPCEndpointsA938FBB8"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "VPCEndpointspublicsubnetSubnet1RouteTable25DEBA1B"
+                        },
+                        "subnetId": {
+                          "Ref": "VPCEndpointspublicsubnetSubnet1Subnet76B2D832"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "DefaultRoute": {
+                    "id": "DefaultRoute",
+                    "path": "VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1/DefaultRoute",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "VPCEndpointspublicsubnetSubnet1RouteTable25DEBA1B"
+                        },
+                        "destinationCidrBlock": "0.0.0.0/0",
+                        "gatewayId": {
+                          "Ref": "VPCEndpointsIGW7D2C5A0D"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRoute",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PublicSubnet",
+                  "version": "2.25.0"
+                }
+              },
+              "private-subnetSubnet1": {
+                "id": "private-subnetSubnet1",
+                "path": "VpcEndpointTestStack/VPC-Endpoints/private-subnetSubnet1",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "VpcEndpointTestStack/VPC-Endpoints/private-subnetSubnet1/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "VPCEndpointsA938FBB8"
+                        },
+                        "availabilityZone": {
+                          "Fn::Select": [
+                            0,
+                            {
+                              "Fn::GetAZs": ""
+                            }
+                          ]
+                        },
+                        "cidrBlock": "10.0.1.0/24",
+                        "mapPublicIpOnLaunch": false,
+                        "tags": [
+                          {
+                            "key": "aws-cdk:subnet-name",
+                            "value": "private-subnet"
+                          },
+                          {
+                            "key": "aws-cdk:subnet-type",
+                            "value": "Isolated"
+                          },
+                          {
+                            "key": "Name",
+                            "value": "VpcEndpointTestStack/VPC-Endpoints/private-subnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnet",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "VpcEndpointTestStack/VPC-Endpoints/private-subnetSubnet1/Acl",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "VpcEndpointTestStack/VPC-Endpoints/private-subnetSubnet1/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "VPCEndpointsA938FBB8"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "VpcEndpointTestStack/VPC-Endpoints/private-subnetSubnet1"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnRouteTable",
+                      "version": "2.25.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "VpcEndpointTestStack/VPC-Endpoints/private-subnetSubnet1/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "VPCEndpointsprivatesubnetSubnet1RouteTableD5C38080"
+                        },
+                        "subnetId": {
+                          "Ref": "VPCEndpointsprivatesubnetSubnet1Subnet01F4FD0A"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ec2.CfnSubnetRouteTableAssociation",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.PrivateSubnet",
+                  "version": "2.25.0"
+                }
+              },
+              "IGW": {
+                "id": "IGW",
+                "path": "VpcEndpointTestStack/VPC-Endpoints/IGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
+                  "aws:cdk:cloudformation:props": {
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "VpcEndpointTestStack/VPC-Endpoints"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnInternetGateway",
+                  "version": "2.25.0"
+                }
+              },
+              "VPCGW": {
+                "id": "VPCGW",
+                "path": "VpcEndpointTestStack/VPC-Endpoints/VPCGW",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+                  "aws:cdk:cloudformation:props": {
+                    "vpcId": {
+                      "Ref": "VPCEndpointsA938FBB8"
+                    },
+                    "internetGatewayId": {
+                      "Ref": "VPCEndpointsIGW7D2C5A0D"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnVPCGatewayAttachment",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.Vpc",
+              "version": "2.25.0"
+            }
+          },
+          "ssh-security-group": {
+            "id": "ssh-security-group",
+            "path": "VpcEndpointTestStack/ssh-security-group",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "VpcEndpointTestStack/ssh-security-group/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::SecurityGroup",
+                  "aws:cdk:cloudformation:props": {
+                    "groupDescription": "Allow SSH (TCP port 22) from Anywhere and All TCP within VPC",
+                    "securityGroupEgress": [
+                      {
+                        "cidrIp": "0.0.0.0/0",
+                        "description": "Allow all outbound traffic by default",
+                        "ipProtocol": "-1"
+                      }
+                    ],
+                    "securityGroupIngress": [
+                      {
+                        "cidrIp": {
+                          "Ref": "safeip"
+                        },
+                        "ipProtocol": "tcp",
+                        "fromPort": 22,
+                        "toPort": 22,
+                        "description": "Allow SSH from Specific IP"
+                      },
+                      {
+                        "cidrIp": {
+                          "Fn::GetAtt": [
+                            "VPCEndpointsA938FBB8",
+                            "CidrBlock"
+                          ]
+                        },
+                        "ipProtocol": "tcp",
+                        "fromPort": 0,
+                        "toPort": 65535,
+                        "description": "Allow all TCP within VPC"
+                      }
+                    ],
+                    "vpcId": {
+                      "Ref": "VPCEndpointsA938FBB8"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnSecurityGroup",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.SecurityGroup",
+              "version": "2.25.0"
+            }
+          },
+          "vpc-endpoints-bkt": {
+            "id": "vpc-endpoints-bkt",
+            "path": "VpcEndpointTestStack/vpc-endpoints-bkt",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "VpcEndpointTestStack/vpc-endpoints-bkt/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {}
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_s3.Bucket",
+              "version": "2.25.0"
+            }
+          },
+          "vpc-endpoints-stream": {
+            "id": "vpc-endpoints-stream",
+            "path": "VpcEndpointTestStack/vpc-endpoints-stream",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "VpcEndpointTestStack/vpc-endpoints-stream/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Kinesis::Stream",
+                  "aws:cdk:cloudformation:props": {
+                    "retentionPeriodHours": 24,
+                    "shardCount": 1,
+                    "streamEncryption": {
+                      "Fn::If": [
+                        "AwsCdkKinesisEncryptedStreamsUnsupportedRegions",
+                        {
+                          "Ref": "AWS::NoValue"
+                        },
+                        {
+                          "EncryptionType": "KMS",
+                          "KeyId": "alias/aws/kinesis"
+                        }
+                      ]
+                    },
+                    "streamModeDetails": {
+                      "streamMode": "PROVISIONED"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_kinesis.CfnStream",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_kinesis.Stream",
+              "version": "2.25.0"
+            }
+          },
+          "AwsCdkKinesisEncryptedStreamsUnsupportedRegions": {
+            "id": "AwsCdkKinesisEncryptedStreamsUnsupportedRegions",
+            "path": "VpcEndpointTestStack/AwsCdkKinesisEncryptedStreamsUnsupportedRegions",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnCondition",
+              "version": "2.25.0"
+            }
+          },
+          "ec2-role": {
+            "id": "ec2-role",
+            "path": "VpcEndpointTestStack/ec2-role",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "VpcEndpointTestStack/ec2-role/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                  "aws:cdk:cloudformation:props": {
+                    "assumeRolePolicyDocument": {
+                      "Statement": [
+                        {
+                          "Action": "sts:AssumeRole",
+                          "Effect": "Allow",
+                          "Principal": {
+                            "Service": {
+                              "Fn::Join": [
+                                "",
+                                [
+                                  "ec2.",
+                                  {
+                                    "Ref": "AWS::URLSuffix"
+                                  }
+                                ]
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "Version": "2012-10-17"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                  "version": "2.25.0"
+                }
+              },
+              "DefaultPolicy": {
+                "id": "DefaultPolicy",
+                "path": "VpcEndpointTestStack/ec2-role/DefaultPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "VpcEndpointTestStack/ec2-role/DefaultPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "s3:DeleteObject",
+                                "s3:GetObject",
+                                "s3:ListBucket",
+                                "s3:PutObject"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": [
+                                {
+                                  "Fn::GetAtt": [
+                                    "vpcendpointsbkt6949EDA6",
+                                    "Arn"
+                                  ]
+                                },
+                                {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      {
+                                        "Fn::GetAtt": [
+                                          "vpcendpointsbkt6949EDA6",
+                                          "Arn"
+                                        ]
+                                      },
+                                      "/*"
+                                    ]
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "Action": "kinesis:*",
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::GetAtt": [
+                                  "vpcendpointsstream01BCD141",
+                                  "Arn"
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "ec2roleDefaultPolicyCD46584B",
+                        "roles": [
+                          {
+                            "Ref": "ec2roleFD75669B"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.25.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_iam.Role",
+              "version": "2.25.0"
+            }
+          },
+          "pub-ec2-vpc-endpts": {
+            "id": "pub-ec2-vpc-endpts",
+            "path": "VpcEndpointTestStack/pub-ec2-vpc-endpts",
+            "children": {
+              "InstanceProfile": {
+                "id": "InstanceProfile",
+                "path": "VpcEndpointTestStack/pub-ec2-vpc-endpts/InstanceProfile",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                  "aws:cdk:cloudformation:props": {
+                    "roles": [
+                      {
+                        "Ref": "ec2roleFD75669B"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnInstanceProfile",
+                  "version": "2.25.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "VpcEndpointTestStack/pub-ec2-vpc-endpts/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                  "aws:cdk:cloudformation:props": {
+                    "availabilityZone": {
+                      "Fn::Select": [
+                        0,
+                        {
+                          "Fn::GetAZs": ""
+                        }
+                      ]
+                    },
+                    "iamInstanceProfile": {
+                      "Ref": "pubec2vpcendptsInstanceProfile5AE675B8"
+                    },
+                    "imageId": {
+                      "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+                    },
+                    "instanceType": "t3.micro",
+                    "keyName": {
+                      "Ref": "keypair"
+                    },
+                    "securityGroupIds": [
+                      {
+                        "Fn::GetAtt": [
+                          "sshsecuritygroup284539AD",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnetId": {
+                      "Ref": "VPCEndpointspublicsubnetSubnet1Subnet76B2D832"
+                    },
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "VpcEndpointTestStack/pub-ec2-vpc-endpts"
+                      }
+                    ],
+                    "userData": {
+                      "Fn::Base64": "#!/bin/bash"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnInstance",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.Instance",
+              "version": "2.25.0"
+            }
+          },
+          "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": {
+            "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+            "path": "VpcEndpointTestStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.25.0"
+            }
+          },
+          "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118": {
+            "id": "SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
+            "path": "VpcEndpointTestStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.Resource",
+              "version": "2.25.0"
+            }
+          },
+          "priv-ec2-vpc-endpts": {
+            "id": "priv-ec2-vpc-endpts",
+            "path": "VpcEndpointTestStack/priv-ec2-vpc-endpts",
+            "children": {
+              "InstanceProfile": {
+                "id": "InstanceProfile",
+                "path": "VpcEndpointTestStack/priv-ec2-vpc-endpts/InstanceProfile",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::IAM::InstanceProfile",
+                  "aws:cdk:cloudformation:props": {
+                    "roles": [
+                      {
+                        "Ref": "ec2roleFD75669B"
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.CfnInstanceProfile",
+                  "version": "2.25.0"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "VpcEndpointTestStack/priv-ec2-vpc-endpts/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::EC2::Instance",
+                  "aws:cdk:cloudformation:props": {
+                    "availabilityZone": {
+                      "Fn::Select": [
+                        0,
+                        {
+                          "Fn::GetAZs": ""
+                        }
+                      ]
+                    },
+                    "iamInstanceProfile": {
+                      "Ref": "privec2vpcendptsInstanceProfile0C665ABE"
+                    },
+                    "imageId": {
+                      "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+                    },
+                    "instanceType": "t3.micro",
+                    "keyName": {
+                      "Ref": "keypair"
+                    },
+                    "securityGroupIds": [
+                      {
+                        "Fn::GetAtt": [
+                          "sshsecuritygroup284539AD",
+                          "GroupId"
+                        ]
+                      }
+                    ],
+                    "subnetId": {
+                      "Ref": "VPCEndpointsprivatesubnetSubnet1Subnet01F4FD0A"
+                    },
+                    "tags": [
+                      {
+                        "key": "Name",
+                        "value": "VpcEndpointTestStack/priv-ec2-vpc-endpts"
+                      }
+                    ],
+                    "userData": {
+                      "Fn::Base64": "#!/bin/bash"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ec2.CfnInstance",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_ec2.Instance",
+              "version": "2.25.0"
+            }
+          },
+          "Ec2PublicIp": {
+            "id": "Ec2PublicIp",
+            "path": "VpcEndpointTestStack/Ec2PublicIp",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.25.0"
+            }
+          },
+          "Ec2PrivateIp": {
+            "id": "Ec2PrivateIp",
+            "path": "VpcEndpointTestStack/Ec2PrivateIp",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.25.0"
+            }
+          },
+          "S3Bucket": {
+            "id": "S3Bucket",
+            "path": "VpcEndpointTestStack/S3Bucket",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.25.0"
+            }
+          },
+          "KdsStream": {
+            "id": "KdsStream",
+            "path": "VpcEndpointTestStack/KdsStream",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.25.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "VpcEndpointTestStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "VpcEndpointTestStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.25.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "VpcEndpointTestStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.25.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.19"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.25.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.25.0"
+    }
+  }
+}

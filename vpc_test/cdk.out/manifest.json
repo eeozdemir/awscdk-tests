@@ -1,0 +1,232 @@
+{
+  "version": "19.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "VpcEndpointTestStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "VpcEndpointTestStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "VpcEndpointTestStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "VpcEndpointTestStack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/891e9b0abae2aaa67283836ef7170cd5cbe4d30c3f79d102ae1d7fcda4d8ea1d.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "VpcEndpointTestStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "VpcEndpointTestStack.assets"
+      ],
+      "metadata": {
+        "/VpcEndpointTestStack/keypair": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "keypair"
+          }
+        ],
+        "/VpcEndpointTestStack/safeip": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "safeip"
+          }
+        ],
+        "/VpcEndpointTestStack/VPC-Endpoints/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCEndpointsA938FBB8"
+          }
+        ],
+        "/VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCEndpointspublicsubnetSubnet1Subnet76B2D832"
+          }
+        ],
+        "/VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCEndpointspublicsubnetSubnet1RouteTable25DEBA1B"
+          }
+        ],
+        "/VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCEndpointspublicsubnetSubnet1RouteTableAssociation4948FA61"
+          }
+        ],
+        "/VpcEndpointTestStack/VPC-Endpoints/public-subnetSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCEndpointspublicsubnetSubnet1DefaultRoute079E34D6"
+          }
+        ],
+        "/VpcEndpointTestStack/VPC-Endpoints/private-subnetSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCEndpointsprivatesubnetSubnet1Subnet01F4FD0A"
+          }
+        ],
+        "/VpcEndpointTestStack/VPC-Endpoints/private-subnetSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCEndpointsprivatesubnetSubnet1RouteTableD5C38080"
+          }
+        ],
+        "/VpcEndpointTestStack/VPC-Endpoints/private-subnetSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCEndpointsprivatesubnetSubnet1RouteTableAssociationA5DBA06C"
+          }
+        ],
+        "/VpcEndpointTestStack/VPC-Endpoints/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCEndpointsIGW7D2C5A0D"
+          }
+        ],
+        "/VpcEndpointTestStack/VPC-Endpoints/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "VPCEndpointsVPCGWC6E87529"
+          }
+        ],
+        "/VpcEndpointTestStack/ssh-security-group/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "sshsecuritygroup284539AD"
+          }
+        ],
+        "/VpcEndpointTestStack/vpc-endpoints-bkt/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcendpointsbkt6949EDA6"
+          }
+        ],
+        "/VpcEndpointTestStack/vpc-endpoints-stream/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "vpcendpointsstream01BCD141"
+          }
+        ],
+        "/VpcEndpointTestStack/AwsCdkKinesisEncryptedStreamsUnsupportedRegions": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AwsCdkKinesisEncryptedStreamsUnsupportedRegions"
+          }
+        ],
+        "/VpcEndpointTestStack/ec2-role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ec2roleFD75669B"
+          }
+        ],
+        "/VpcEndpointTestStack/ec2-role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ec2roleDefaultPolicyCD46584B"
+          }
+        ],
+        "/VpcEndpointTestStack/pub-ec2-vpc-endpts/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "pubec2vpcendptsInstanceProfile5AE675B8"
+          }
+        ],
+        "/VpcEndpointTestStack/pub-ec2-vpc-endpts/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "pubec2vpcendpts588343A8"
+          }
+        ],
+        "/VpcEndpointTestStack/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn2-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValueawsserviceamiamazonlinuxlatestamzn2amihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/VpcEndpointTestStack/priv-ec2-vpc-endpts/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "privec2vpcendptsInstanceProfile0C665ABE"
+          }
+        ],
+        "/VpcEndpointTestStack/priv-ec2-vpc-endpts/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "privec2vpcendpts2A9C08E1"
+          }
+        ],
+        "/VpcEndpointTestStack/Ec2PublicIp": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Ec2PublicIp"
+          }
+        ],
+        "/VpcEndpointTestStack/Ec2PrivateIp": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Ec2PrivateIp"
+          }
+        ],
+        "/VpcEndpointTestStack/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "S3Bucket"
+          }
+        ],
+        "/VpcEndpointTestStack/KdsStream": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "KdsStream"
+          }
+        ],
+        "/VpcEndpointTestStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/VpcEndpointTestStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/VpcEndpointTestStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/VpcEndpointTestStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "VpcEndpointTestStack"
+    }
+  }
+}
